@@ -73,11 +73,12 @@ function CopyButton({ text, label = "Copy" }: { text: string; label?: string }) 
   return (
     <button
       onClick={handleCopy}
-      className={`flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-lg border transition-all duration-200 ${
+      className={`flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-lg border transition-all duration-300 ease-in-out ${
         copied
-          ? "bg-emerald-500/15 text-emerald-400 border-emerald-500/30"
+          ? "bg-emerald-500/15 text-emerald-400 border-emerald-500/30 scale-95"
           : "bg-[#1E1E2E] hover:bg-[#2A2A3E] text-[#94A3B8] hover:text-white border-[#1E1E2E] hover:border-[#3A3A5E]"
       }`}
+      style={{ transform: copied ? "scale(0.95)" : "scale(1)", transition: "all 0.3s ease-in-out" }}
     >
       {copied ? (
         <>
@@ -177,7 +178,7 @@ function PostCard({
 
   return (
     <div
-      className="flex flex-col rounded-2xl overflow-hidden border bg-card"
+      className="flex flex-col rounded-2xl overflow-hidden border bg-card post-card"
       style={{
         borderColor: `${accent.border}40`,
         boxShadow: `0 0 0 1px ${accent.border}20, 0 8px 32px ${accent.glow}`,
@@ -427,7 +428,7 @@ export default function Generator() {
                 key={id}
                 type="button"
                 onClick={() => setPlatform(id)}
-                className={`flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-semibold border transition-all duration-150 ${
+                className={`flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-semibold border transition-all duration-300 ease-in-out ${
                   platform === id
                     ? "bg-[#7C3AED] border-[#7C3AED] text-white shadow-lg shadow-[#7C3AED]/25"
                     : "bg-transparent border-edge text-muted hover:border-[#7C3AED]/50 hover:text-white"
@@ -449,7 +450,7 @@ export default function Generator() {
                 key={id}
                 type="button"
                 onClick={() => setTone(id)}
-                className={`flex flex-col items-start gap-0.5 px-4 py-4 rounded-xl border text-left transition-all duration-150 ${
+                className={`flex flex-col items-start gap-0.5 px-4 py-4 rounded-xl border text-left transition-all duration-300 ease-in-out ${
                   tone === id
                     ? "border-[#7C3AED] bg-[#7C3AED]/10 text-white shadow-lg shadow-[#7C3AED]/15"
                     : "border-edge bg-bg text-muted hover:border-[#7C3AED]/40 hover:text-white"
@@ -466,7 +467,7 @@ export default function Generator() {
         <button
           type="submit"
           disabled={loading || !niche.trim()}
-          className="w-full flex items-center justify-center gap-2.5 bg-[#7C3AED] hover:bg-[#6D28D9] disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold text-sm py-4 rounded-xl transition-colors shadow-lg shadow-[#7C3AED]/25"
+          className="w-full flex items-center justify-center gap-2.5 bg-[#7C3AED] hover:bg-[#6D28D9] disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold text-sm py-4 rounded-xl shadow-lg shadow-[#7C3AED]/25 btn-primary"
         >
           {loading ? (
             <>

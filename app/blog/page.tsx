@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 import { posts } from "./data";
 
 export const metadata: Metadata = {
@@ -30,6 +32,8 @@ const CATEGORY_COLORS: Record<string, string> = {
 
 export default function BlogPage() {
   return (
+    <>
+    <Navbar />
     <section className="py-20 px-6">
       <div className="max-w-3xl mx-auto">
 
@@ -87,5 +91,7 @@ export default function BlogPage() {
         </div>
       </div>
     </section>
+    <Footer />
+    </>
   );
 }

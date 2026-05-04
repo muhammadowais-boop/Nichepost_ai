@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import Navbar from "../../components/Navbar";
+import Footer from "../../components/Footer";
 import { posts, getPost } from "../data";
 
 interface Props {
@@ -143,6 +145,7 @@ export default async function BlogPostPage({ params }: Props) {
 
   return (
     <>
+      <Navbar />
       <article className="py-16 px-6">
         <div className="max-w-2xl mx-auto">
 
@@ -231,6 +234,7 @@ export default async function BlogPostPage({ params }: Props) {
           </div>
         </section>
       )}
+      <Footer />
     </>
   );
 }
