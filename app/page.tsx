@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Generator from "./components/Generator";
-import DemoCalendar from "./components/DemoCalendar";
 
 export const metadata: Metadata = {
   title: "NichePost AI — 7-Day Content Calendar Generator",
@@ -9,179 +8,157 @@ export const metadata: Metadata = {
     "Tell NichePost AI your niche, platform, and tone. Get a ready-to-post 7-day content calendar — copy, captions, and hashtags included.",
   openGraph: {
     title: "NichePost AI — 7-Day Content Calendar Generator",
-    description:
-      "Get a ready-to-post 7-day content calendar for any niche in seconds. Instagram, LinkedIn, Twitter — powered by Claude AI.",
     url: "https://nichepost.ai",
     type: "website",
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "NichePost AI — 7-Day Content Calendar Generator",
-    description:
-      "Get a ready-to-post 7-day content calendar for any niche in seconds.",
-  },
 };
+
+/* ─── Static hero preview card ─────────────────────────────── */
+function HeroCard() {
+  return (
+    <div className="w-full max-w-lg mx-auto bg-card border border-edge rounded-2xl overflow-hidden shadow-2xl shadow-black/60">
+      {/* Card header */}
+      <div className="px-4 py-3 flex items-center justify-between border-b border-edge">
+        <span className="bg-purple text-white text-xs font-bold px-2.5 py-1 rounded-md">
+          Day 1
+        </span>
+        <span className="text-xs text-muted">Instagram · Casual</span>
+      </div>
+
+      {/* Card body */}
+      <div className="px-4 py-4 space-y-3">
+        <p className="text-sm text-white/80 leading-relaxed">
+          Mondays hit different when your morning routine is dialed in 🧠 Here&rsquo;s
+          the 3-minute reset I do before checking my phone — saves my whole day.
+          Try it tomorrow and tell me how it goes 👇
+        </p>
+        <div className="flex flex-wrap gap-1.5">
+          {["#morningroutine", "#productivityhacks", "#wellness", "#busymom"].map((t) => (
+            <span
+              key={t}
+              className="text-xs bg-[#7C3AED]/10 text-purple-lt border border-[#7C3AED]/20 px-2 py-0.5 rounded"
+            >
+              {t}
+            </span>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export default function Home() {
   return (
-    <main className="min-h-screen flex flex-col">
-      {/* Nav */}
-      <nav className="border-b border-slate-800 px-6 py-4 flex items-center justify-between">
-        <span className="font-bold text-lg tracking-tight">
-          <span className="text-violet-400">Niche</span>Post AI
-        </span>
-        <div className="flex items-center gap-5">
-          <Link
-            href="/blog"
-            className="text-sm text-slate-400 hover:text-white transition-colors font-medium"
-          >
-            Blog
-          </Link>
-          <Link
-            href="#generator"
-            className="text-sm bg-violet-600 hover:bg-violet-500 transition-colors px-4 py-2 rounded-full font-medium"
-          >
-            Get Started Free
-          </Link>
-        </div>
-      </nav>
+    <>
+      {/* ── Hero ─────────────────────────────────────────────── */}
+      <section className="flex flex-col items-center text-center px-6 pt-20 pb-24 max-w-6xl mx-auto w-full">
 
-      {/* Hero */}
-      <section className="flex flex-col items-center text-center px-6 pt-24 pb-20">
-        <div className="inline-flex items-center gap-2 bg-violet-950/60 border border-violet-700/40 text-violet-300 text-xs font-medium px-3 py-1.5 rounded-full mb-6">
-          <span className="w-1.5 h-1.5 rounded-full bg-violet-400 animate-pulse" />
-          Powered by Claude AI
+        {/* Badge */}
+        <div className="inline-flex items-center gap-2 border border-edge bg-card text-muted text-xs font-medium px-3.5 py-1.5 rounded-full mb-8">
+          🚀 Powered by Advanced AI
         </div>
 
-        <h1 className="text-5xl sm:text-6xl font-extrabold leading-tight tracking-tight max-w-3xl">
-          A Full Week of{" "}
-          <span className="bg-gradient-to-r from-violet-400 to-fuchsia-400 bg-clip-text text-transparent">
-            Social Content
-          </span>
+        {/* Headline */}
+        <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold leading-[1.08] tracking-tight max-w-4xl">
+          A Full Week of
           <br />
+          <span className="bg-gradient-to-r from-purple to-purple-lt bg-clip-text text-transparent">
+            Social Content
+          </span>{" "}
           in 10 Seconds
         </h1>
 
-        <p className="mt-6 text-lg text-slate-400 max-w-xl leading-relaxed">
+        {/* Sub */}
+        <p className="mt-6 text-base sm:text-lg text-muted max-w-xl leading-relaxed">
           Tell NichePost AI your niche, platform, and tone. Get a ready-to-post
           7-day content calendar — copy, captions, and hashtags included.
         </p>
 
-        <div className="mt-10 flex flex-wrap gap-4 justify-center">
+        {/* CTAs */}
+        <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
           <Link
             href="#generator"
-            className="bg-violet-600 hover:bg-violet-500 transition-colors px-7 py-3.5 rounded-full font-semibold text-base shadow-lg shadow-violet-900/40"
+            className="inline-flex items-center gap-2 bg-purple hover:bg-[#6D28D9] text-white font-semibold px-7 py-3 rounded-lg text-sm transition-colors shadow-lg shadow-purple/20"
           >
-            Generate My Calendar →
+            Generate My Calendar
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
           </Link>
           <Link
             href="#how-it-works"
-            className="border border-slate-700 hover:border-slate-500 transition-colors px-7 py-3.5 rounded-full font-semibold text-base text-slate-300"
+            className="inline-flex items-center gap-2 border border-edge hover:border-muted text-muted hover:text-white font-semibold px-7 py-3 rounded-lg text-sm transition-colors"
           >
             See How It Works
           </Link>
         </div>
 
-        {/* Social proof */}
-        <div className="mt-12 flex flex-wrap items-center justify-center gap-6 text-slate-500 text-sm">
+        {/* Trust badges */}
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-5 text-xs text-muted">
           <span>✦ No credit card required</span>
           <span>✦ 7 posts per run</span>
           <span>✦ Any niche</span>
         </div>
+
+        {/* Floating preview card */}
+        <div className="mt-14 w-full">
+          <HeroCard />
+        </div>
       </section>
 
-      {/* How it works */}
-      <section id="how-it-works" className="py-20 px-6 border-t border-slate-800">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-14">
-            How It Works
-          </h2>
-          <div className="grid sm:grid-cols-3 gap-8">
+      {/* ── How It Works ─────────────────────────────────────── */}
+      <section id="how-it-works" className="py-24 px-6 border-t border-edge">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-14">
+            <h2 className="text-4xl font-extrabold tracking-tight">How It Works</h2>
+            <p className="mt-3 text-muted text-base">
+              From blank page to a week of content in three steps.
+            </p>
+          </div>
+
+          <div className="grid sm:grid-cols-3 gap-5">
             {[
               {
-                step: "01",
-                title: "Enter Your Niche",
-                desc: "Describe your business, audience, or topic in a single phrase.",
+                n: "01",
+                title: "Describe Your Niche",
+                desc: "Enter your business, audience, or topic — the more specific, the better.",
               },
               {
-                step: "02",
-                title: "Pick Platform & Tone",
-                desc: "Choose Instagram, LinkedIn, or Twitter and your preferred voice.",
+                n: "02",
+                title: "Choose Platform & Tone",
+                desc: "Instagram, LinkedIn, or Twitter. Professional, casual, or humorous voice.",
               },
               {
-                step: "03",
-                title: "Get Your Calendar",
-                desc: "Receive 7 polished posts with hashtags ready to copy and paste.",
+                n: "03",
+                title: "Get 7 Ready Posts",
+                desc: "Copy, hashtags, and a cover image — ready to paste into your scheduler.",
               },
-            ].map(({ step, title, desc }) => (
+            ].map(({ n, title, desc }) => (
               <div
-                key={step}
-                className="bg-slate-900 rounded-2xl p-6 border border-slate-800"
+                key={n}
+                className="bg-card border border-edge rounded-2xl p-7 flex flex-col gap-3"
               >
-                <div className="text-violet-400 font-mono text-sm font-bold mb-3">
-                  {step}
-                </div>
-                <h3 className="font-semibold text-lg mb-2">{title}</h3>
-                <p className="text-slate-400 text-sm leading-relaxed">{desc}</p>
+                <span className="text-4xl font-black text-purple leading-none">{n}</span>
+                <h3 className="text-base font-bold text-white">{title}</h3>
+                <p className="text-sm text-muted leading-relaxed">{desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Demo Calendar — example output */}
-      <DemoCalendar />
-
-      {/* Generator */}
-      <section
-        id="generator"
-        className="py-20 px-6 border-t border-slate-800 flex-1"
-      >
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-2">
-            Generate Your Calendar
-          </h2>
-          <p className="text-slate-400 text-center mb-12">
-            Fill in the details below and your 7-day plan will appear instantly.
-          </p>
+      {/* ── Generator ────────────────────────────────────────── */}
+      <section id="generator" className="py-24 px-6 border-t border-edge">
+        <div className="max-w-3xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-extrabold tracking-tight">Generate Your Calendar</h2>
+            <p className="mt-3 text-muted text-base">
+              Three inputs. One week of posts. Ten seconds.
+            </p>
+          </div>
           <Generator />
         </div>
       </section>
-
-      {/* Blog teaser */}
-      <section className="py-16 px-6 border-t border-slate-800">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-2xl font-bold mb-3">Learn the Strategy Behind the Posts</h2>
-          <p className="text-slate-400 mb-8 max-w-lg mx-auto text-sm">
-            Guides on niche selection, content calendars, and platform growth — so your
-            AI-generated posts land with maximum impact.
-          </p>
-          <Link
-            href="/blog"
-            className="inline-flex items-center gap-2 border border-slate-700 hover:border-slate-500 transition-colors px-6 py-3 rounded-full font-semibold text-sm text-slate-300"
-          >
-            Read the Blog →
-          </Link>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="border-t border-slate-800 py-8 px-6">
-        <div className="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-slate-600 text-sm">
-          <span>
-            © {new Date().getFullYear()}{" "}
-            <span className="text-violet-500">Niche</span>Post AI
-          </span>
-          <div className="flex items-center gap-6">
-            <Link href="/blog" className="hover:text-slate-400 transition-colors">
-              Blog
-            </Link>
-            <Link href="/sitemap.xml" className="hover:text-slate-400 transition-colors">
-              Sitemap
-            </Link>
-          </div>
-        </div>
-      </footer>
-    </main>
+    </>
   );
 }
