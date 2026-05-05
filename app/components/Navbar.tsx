@@ -13,6 +13,10 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  const BORDER = "#1E1E2E";
+  const PURPLE = "#7C3AED";
+  const MUTED  = "#94A3B8";
+
   return (
     <header
       className="sticky top-0 z-50 h-16"
@@ -20,66 +24,64 @@ export default function Navbar() {
         backdropFilter: "blur(14px)",
         WebkitBackdropFilter: "blur(14px)",
         background: scrolled ? "rgba(10,10,15,0.95)" : "rgba(10,10,15,0.55)",
-        borderBottom: scrolled ? "1px solid #1E1E2E" : "1px solid transparent",
+        borderBottom: scrolled ? `1px solid ${BORDER}` : "1px solid transparent",
         transition: "background 0.4s ease-in-out, border-color 0.4s ease-in-out",
       }}
     >
       <div
-        className="max-w-6xl mx-auto px-6 h-full"
         style={{
-          display: "grid",
-          gridTemplateColumns: "1fr auto 1fr",
+          maxWidth: 1152,
+          margin: "0 auto",
+          padding: "0 20px",
+          height: "100%",
+          display: "flex",
           alignItems: "center",
+          justifyContent: "space-between",
+          gap: 16,
         }}
       >
-
-        {/* Logo — left column */}
+        {/* Logo */}
         <Link
           href="/"
-          className="nav-link no-underline"
           style={{
             display: "inline-flex",
             alignItems: "center",
             gap: 6,
             fontWeight: 700,
-            fontSize: 16,
+            fontSize: 15,
             color: "#fff",
             textDecoration: "none",
             letterSpacing: "-0.02em",
-            justifySelf: "start",
+            flexShrink: 0,
           }}
         >
           NichePost AI
-          <span className="w-2 h-2 rounded-full bg-purple inline-block" />
+          <span style={{ width: 7, height: 7, borderRadius: "50%", background: PURPLE, display: "inline-block" }} />
         </Link>
 
-        {/* Desktop links — center column, pill container */}
-        <nav className="hidden md:flex nav-pill">
+        {/* Center nav pill — desktop only */}
+        <nav className="hidden md:flex nav-pill" style={{ flex: "0 0 auto" }}>
           {[
             { label: "How It Works", href: "/#how-it-works" },
             { label: "Blog",         href: "/blog"           },
           ].map(({ label, href }) => (
-            <Link
-              key={label}
-              href={href}
-              className="nav-pill-link"
-            >
+            <Link key={label} href={href} className="nav-pill-link">
               {label}
             </Link>
           ))}
         </nav>
 
-        {/* CTA — right column, hidden on mobile */}
-        <div className="hidden md:flex" style={{ justifySelf: "end", alignItems: "center" }}>
+        {/* Right slot */}
+        <div style={{ display: "flex", alignItems: "center", gap: 8, flexShrink: 0 }}>
+          {/* Desktop CTA */}
           <Link
             href="/#generator"
-            className="btn-primary no-underline"
+            className="hidden md:inline-flex btn-primary"
             style={{
               display: "inline-flex",
               alignItems: "center",
-              justifyContent: "center",
               gap: 8,
-              background: "#7C3AED",
+              background: PURPLE,
               color: "#fff",
               fontWeight: 600,
               fontSize: 14,
@@ -92,30 +94,48 @@ export default function Navbar() {
           >
             Get Started Free
           </Link>
-        </div>
 
-        {/* Mobile hamburger — right column, hidden on desktop */}
-        <button
-          onClick={() => setOpen(!open)}
-          aria-label="Toggle menu"
-          className="md:hidden flex p-2 text-muted hover:text-white transition-colors"
-          style={{ justifySelf: "end", alignItems: "center" }}
-        >
-          {open ? (
-            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          ) : (
-            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
-          )}
-        </button>
+          {/* Mobile hamburger */}
+          <button
+            onClick={() => setOpen(!open)}
+            aria-label="Toggle menu"
+            className="md:hidden"
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              padding: 8,
+              background: "none",
+              border: "none",
+              color: MUTED,
+              cursor: "pointer",
+            }}
+          >
+            {open ? (
+              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            ) : (
+              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            )}
+          </button>
+        </div>
       </div>
 
       {/* Mobile drawer */}
       {open && (
-        <div className="md:hidden border-t border-edge bg-card px-6 py-5 flex flex-col gap-4">
+        <div
+          style={{
+            borderTop: `1px solid ${BORDER}`,
+            background: "#12121A",
+            padding: "20px",
+            display: "flex",
+            flexDirection: "column",
+            gap: 16,
+          }}
+        >
           {[
             { label: "How It Works", href: "/#how-it-works" },
             { label: "Blog",         href: "/blog"           },
@@ -124,7 +144,8 @@ export default function Navbar() {
               key={label}
               href={href}
               onClick={() => setOpen(false)}
-              className="nav-link text-sm text-muted no-underline"
+              style={{ fontSize: 15, color: MUTED, textDecoration: "none" }}
+              className="nav-link"
             >
               {label}
             </Link>
@@ -132,8 +153,19 @@ export default function Navbar() {
           <Link
             href="/#generator"
             onClick={() => setOpen(false)}
-            className="mt-1 flex justify-center text-white text-sm font-semibold no-underline"
-            style={{ background: "#7C3AED", padding: "10px 20px", borderRadius: 8 }}
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              background: PURPLE,
+              color: "#fff",
+              fontWeight: 600,
+              fontSize: 14,
+              padding: "12px 20px",
+              borderRadius: 8,
+              textDecoration: "none",
+              marginTop: 4,
+            }}
           >
             Get Started Free
           </Link>

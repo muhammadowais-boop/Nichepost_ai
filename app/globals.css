@@ -215,7 +215,7 @@ input, textarea {
   border: 1px solid rgba(255, 255, 255, 0.09);
   border-radius: 999px;
   padding: 5px 6px;
-  display: flex;
+  /* display is controlled by Tailwind (hidden md:flex) */
   align-items: center;
   gap: 2px;
   backdrop-filter: blur(8px);
@@ -273,7 +273,7 @@ input, textarea {
 
 .social-float {
   position: absolute;
-  display: flex;
+  /* display is controlled by Tailwind (hidden md:flex) */
   align-items: center;
   justify-content: center;
   width: 60px;

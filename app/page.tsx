@@ -109,7 +109,7 @@ export default function Home() {
       <main style={{ flex: 1, position: "relative", zIndex: 1 }}>
 
         {/* ── HERO ─────────────────────────────────────────────── */}
-        <section style={{ position: "relative", overflow: "hidden", padding: "80px 24px 96px" }}>
+        <section style={{ position: "relative", overflow: "hidden", padding: "60px 20px 80px" }}>
 
           {/* Grid background */}
           <div className="hero-grid" />
