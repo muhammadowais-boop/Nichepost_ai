@@ -69,11 +69,11 @@ export default function Navbar() {
           ))}
         </nav>
 
-        {/* CTA — right column */}
-        <div style={{ justifySelf: "end", display: "flex", alignItems: "center" }}>
+        {/* CTA — right column, hidden on mobile */}
+        <div className="hidden md:flex" style={{ justifySelf: "end", alignItems: "center" }}>
           <Link
             href="/#generator"
-            className="hidden md:inline-flex btn-primary no-underline"
+            className="btn-primary no-underline"
             style={{
               display: "inline-flex",
               alignItems: "center",
@@ -94,12 +94,12 @@ export default function Navbar() {
           </Link>
         </div>
 
-        {/* Mobile hamburger — right column on mobile */}
+        {/* Mobile hamburger — right column, hidden on desktop */}
         <button
           onClick={() => setOpen(!open)}
           aria-label="Toggle menu"
-          className="md:hidden p-2 text-muted hover:text-white transition-colors"
-          style={{ justifySelf: "end", display: "flex", alignItems: "center" }}
+          className="md:hidden flex p-2 text-muted hover:text-white transition-colors"
+          style={{ justifySelf: "end", alignItems: "center" }}
         >
           {open ? (
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>

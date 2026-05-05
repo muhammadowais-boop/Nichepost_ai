@@ -90,11 +90,11 @@ export default function HomeNavbar() {
           ))}
         </nav>
 
-        {/* Desktop CTA — right column */}
-        <div style={{ justifySelf: "end", display: "flex", alignItems: "center" }}>
+        {/* Desktop CTA — right column, hidden on mobile */}
+        <div className="hidden md:flex" style={{ justifySelf: "end", alignItems: "center" }}>
           <Link
             href="#generator"
-            className="hidden md:inline-flex btn-primary"
+            className="btn-primary"
             style={{
               display: "inline-flex",
               alignItems: "center",
@@ -115,12 +115,11 @@ export default function HomeNavbar() {
           </Link>
         </div>
 
-        {/* Mobile hamburger — right column on mobile */}
+        {/* Mobile hamburger — right column, hidden on desktop */}
         <button
           onClick={() => setOpen(!open)}
           aria-label="Toggle menu"
           style={{
-            display: "flex",
             alignItems: "center",
             justifyContent: "center",
             padding: 8,
@@ -130,7 +129,7 @@ export default function HomeNavbar() {
             cursor: "pointer",
             justifySelf: "end",
           }}
-          className="md:hidden"
+          className="md:hidden flex"
         >
           {open ? (
             <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
