@@ -24,16 +24,37 @@ export default function Navbar() {
         transition: "background 0.4s ease-in-out, border-color 0.4s ease-in-out",
       }}
     >
-      <div className="max-w-6xl mx-auto px-6 h-full flex items-center justify-between">
+      <div
+        className="max-w-6xl mx-auto px-6 h-full"
+        style={{
+          display: "grid",
+          gridTemplateColumns: "1fr auto 1fr",
+          alignItems: "center",
+        }}
+      >
 
-        {/* Logo */}
-        <Link href="/" className="flex items-center gap-1.5 font-bold text-base tracking-tight select-none text-white no-underline">
+        {/* Logo — left column */}
+        <Link
+          href="/"
+          className="nav-link no-underline"
+          style={{
+            display: "inline-flex",
+            alignItems: "center",
+            gap: 6,
+            fontWeight: 700,
+            fontSize: 16,
+            color: "#fff",
+            textDecoration: "none",
+            letterSpacing: "-0.02em",
+            justifySelf: "start",
+          }}
+        >
           NichePost AI
           <span className="w-2 h-2 rounded-full bg-purple inline-block" />
         </Link>
 
-        {/* Desktop links — Features removed */}
-        <nav className="hidden md:flex items-center gap-8">
+        {/* Desktop links — center column, pill container */}
+        <nav className="hidden md:flex nav-pill">
           {[
             { label: "How It Works", href: "/#how-it-works" },
             { label: "Blog",         href: "/blog"           },
@@ -41,32 +62,44 @@ export default function Navbar() {
             <Link
               key={label}
               href={href}
-              className="nav-link text-sm text-muted no-underline"
+              className="nav-pill-link"
             >
               {label}
             </Link>
           ))}
         </nav>
 
-        {/* CTA */}
-        <Link
-          href="/#generator"
-          className="hidden md:inline-flex items-center gap-2 btn-primary text-white text-sm font-semibold no-underline"
-          style={{
-            background: "#7C3AED",
-            padding: "10px 20px",
-            borderRadius: 8,
-            boxShadow: "0 4px 24px rgba(124,58,237,0.35)",
-          }}
-        >
-          Get Started Free
-        </Link>
+        {/* CTA — right column */}
+        <div style={{ justifySelf: "end", display: "flex", alignItems: "center" }}>
+          <Link
+            href="/#generator"
+            className="hidden md:inline-flex btn-primary no-underline"
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: 8,
+              background: "#7C3AED",
+              color: "#fff",
+              fontWeight: 600,
+              fontSize: 14,
+              padding: "10px 20px",
+              borderRadius: 8,
+              textDecoration: "none",
+              boxShadow: "0 4px 24px rgba(124,58,237,0.35)",
+              whiteSpace: "nowrap",
+            }}
+          >
+            Get Started Free
+          </Link>
+        </div>
 
-        {/* Mobile hamburger */}
+        {/* Mobile hamburger — right column on mobile */}
         <button
           onClick={() => setOpen(!open)}
           aria-label="Toggle menu"
           className="md:hidden p-2 text-muted hover:text-white transition-colors"
+          style={{ justifySelf: "end", display: "flex", alignItems: "center" }}
         >
           {open ? (
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>

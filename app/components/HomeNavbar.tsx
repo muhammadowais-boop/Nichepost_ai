@@ -42,16 +42,16 @@ export default function HomeNavbar() {
           margin: "0 auto",
           padding: "0 24px",
           height: 64,
-          display: "flex",
+          display: "grid",
+          gridTemplateColumns: "1fr auto 1fr",
           alignItems: "center",
-          justifyContent: "space-between",
         }}
       >
-        {/* Logo */}
+        {/* Logo — left column */}
         <Link
           href="/"
           style={{
-            display: "flex",
+            display: "inline-flex",
             alignItems: "center",
             gap: 6,
             fontWeight: 700,
@@ -59,6 +59,7 @@ export default function HomeNavbar() {
             color: "#fff",
             textDecoration: "none",
             letterSpacing: "-0.02em",
+            justifySelf: "start",
           }}
         >
           NichePost AI
@@ -73,11 +74,8 @@ export default function HomeNavbar() {
           />
         </Link>
 
-        {/* Desktop nav — Features removed */}
-        <nav
-          className="hidden md:flex"
-          style={{ gap: 32, alignItems: "center" }}
-        >
+        {/* Desktop nav — center column, pill container */}
+        <nav className="hidden md:flex nav-pill">
           {[
             { label: "How It Works", href: "#how-it-works" },
             { label: "Blog",         href: "/blog"         },
@@ -85,45 +83,52 @@ export default function HomeNavbar() {
             <Link
               key={label}
               href={href}
-              className="nav-link"
-              style={{ fontSize: 14, color: MUTED, textDecoration: "none" }}
+              className="nav-pill-link"
             >
               {label}
             </Link>
           ))}
         </nav>
 
-        {/* Desktop CTA */}
-        <Link
-          href="#generator"
-          className="hidden md:inline-flex btn-primary"
-          style={{
-            alignItems: "center",
-            gap: 8,
-            background: PURPLE,
-            color: "#fff",
-            fontWeight: 600,
-            fontSize: 14,
-            padding: "10px 20px",
-            borderRadius: 8,
-            textDecoration: "none",
-            boxShadow: `0 4px 24px ${PURPLE}40`,
-          }}
-        >
-          Get Started Free
-        </Link>
+        {/* Desktop CTA — right column */}
+        <div style={{ justifySelf: "end", display: "flex", alignItems: "center" }}>
+          <Link
+            href="#generator"
+            className="hidden md:inline-flex btn-primary"
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: 8,
+              background: PURPLE,
+              color: "#fff",
+              fontWeight: 600,
+              fontSize: 14,
+              padding: "10px 20px",
+              borderRadius: 8,
+              textDecoration: "none",
+              boxShadow: `0 4px 24px ${PURPLE}40`,
+              whiteSpace: "nowrap",
+            }}
+          >
+            Get Started Free
+          </Link>
+        </div>
 
-        {/* Mobile hamburger */}
+        {/* Mobile hamburger — right column on mobile */}
         <button
           onClick={() => setOpen(!open)}
           aria-label="Toggle menu"
           style={{
             display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
             padding: 8,
             background: "none",
             border: "none",
             color: MUTED,
             cursor: "pointer",
+            justifySelf: "end",
           }}
           className="md:hidden"
         >
