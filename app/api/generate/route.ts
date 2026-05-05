@@ -1,7 +1,4 @@
-import Anthropic from "@anthropic-ai/sdk";
 import { NextRequest, NextResponse } from "next/server";
-
-const client = new Anthropic();
 
 const DAYS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
 
@@ -47,21 +44,36 @@ Tone: ${tone}.
 Cover all 7 days: ${DAYS.join(", ")}.`;
 
   try {
-    const message = await client.messages.create({
-      model: "claude-sonnet-4-6",
-      max_tokens: 4096,
-      system: systemPrompt,
-      messages: [{ role: "user", content: userPrompt }],
+    const response = await fetch("https://api.x.ai/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${process.env.XAI_API_KEY}`,
+      },
+      body: JSON.stringify({
+        model: "grok-3",
+        max_tokens: 4096,
+        messages: [
+          { role: "system", content: systemPrompt },
+          { role: "user",   content: userPrompt   },
+        ],
+      }),
     });
 
-    const raw = message.content[0].type === "text" ? message.content[0].text : "";
+    if (!response.ok) {
+      const errText = await response.text();
+      throw new Error(`Grok API error ${response.status}: ${errText}`);
+    }
+
+    const data = await response.json();
+    const raw: string = data.choices?.[0]?.message?.content ?? "";
 
     // Strip any accidental markdown fences
     const cleaned = raw.replace(/^```(?:json)?\s*/i, "").replace(/\s*```$/i, "").trim();
     const parsed = JSON.parse(cleaned);
 
     if (!Array.isArray(parsed.posts) || parsed.posts.length !== 7) {
-      throw new Error("Unexpected response shape from Claude");
+      throw new Error("Unexpected response shape from Grok");
     }
 
     return NextResponse.json(parsed);
