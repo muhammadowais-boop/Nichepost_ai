@@ -6,6 +6,7 @@ const PLATFORM_GUIDANCE: Record<string, string> = {
   Instagram: "Visual-first captions (150–220 chars of punchy copy before 'more'), storytelling hooks, emoji-friendly, ends with a soft CTA. 8–12 niche hashtags.",
   LinkedIn: "Professional insight or personal story (200–300 words), structured with line breaks, thought leadership angle, ends with a question to drive comments. 3–5 industry hashtags.",
   Twitter: "Punchy, under 280 characters. Conversational, opinionated, or a hot take. 2–4 hashtags maximum.",
+  Facebook: "Conversational and community-focused (100–250 words), mix of storytelling and value, encourages shares and comments, emoji-friendly, ends with an engaging question. 3–6 relevant hashtags.",
 };
 
 const TONE_GUIDANCE: Record<string, string> = {
