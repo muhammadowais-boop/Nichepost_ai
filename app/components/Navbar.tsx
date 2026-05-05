@@ -73,28 +73,6 @@ export default function Navbar() {
 
         {/* Right slot */}
         <div style={{ display: "flex", alignItems: "center", gap: 8, flexShrink: 0 }}>
-          {/* Desktop CTA */}
-          <Link
-            href="/#generator"
-            className="hidden md:inline-flex btn-primary"
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: 8,
-              background: PURPLE,
-              color: "#fff",
-              fontWeight: 600,
-              fontSize: 14,
-              padding: "10px 20px",
-              borderRadius: 8,
-              textDecoration: "none",
-              boxShadow: "0 4px 24px rgba(124,58,237,0.35)",
-              whiteSpace: "nowrap",
-            }}
-          >
-            Get Started Free
-          </Link>
-
           {/* Mobile hamburger */}
           <button
             onClick={() => setOpen(!open)}
@@ -150,25 +128,6 @@ export default function Navbar() {
               {label}
             </Link>
           ))}
-          <Link
-            href="/#generator"
-            onClick={() => setOpen(false)}
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              background: PURPLE,
-              color: "#fff",
-              fontWeight: 600,
-              fontSize: 14,
-              padding: "12px 20px",
-              borderRadius: 8,
-              textDecoration: "none",
-              marginTop: 4,
-            }}
-          >
-            Get Started Free
-          </Link>
         </div>
       )}
     </header>
