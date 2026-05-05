@@ -414,7 +414,9 @@ export default function Generator() {
             value={niche}
             onChange={(e) => setNiche(e.target.value)}
             placeholder="e.g. fitness coaching for busy moms, B2B SaaS sales…"
-            className="w-full bg-bg border border-edge rounded-xl px-4 py-3 text-sm text-white placeholder-muted focus:outline-none focus:ring-2 focus:ring-[#7C3AED]/50 focus:border-[#7C3AED]/60 transition"
+            autoComplete="off"
+            className="w-full border border-edge rounded-xl px-4 py-3 text-sm text-white placeholder-muted focus:outline-none focus:ring-2 focus:ring-[#7C3AED]/50 focus:border-[#7C3AED]/60 transition"
+            style={{ background: "#12121A", colorScheme: "dark" }}
             required
           />
         </div>

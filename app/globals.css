@@ -186,6 +186,28 @@ body {
 .footer-link:hover { color: #ffffff !important; }
 
 /* ═══════════════════════════════════════════════════════════════
+   INPUT — kill browser autofill light background
+═══════════════════════════════════════════════════════════════ */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0px 1000px #12121A inset !important;
+  box-shadow:         0 0 0px 1000px #12121A inset !important;
+  -webkit-text-fill-color: #ffffff !important;
+  caret-color: #ffffff;
+  border-color: #1E1E2E !important;
+  transition: background-color 9999s ease-in-out 0s;
+}
+
+/* Also force dark bg on any typed-into input */
+input, textarea {
+  background-color: #12121A;
+  color: #ffffff;
+  color-scheme: dark;
+}
+
+/* ═══════════════════════════════════════════════════════════════
    NAV PILL  (center nav container)
 ═══════════════════════════════════════════════════════════════ */
 .nav-pill {
